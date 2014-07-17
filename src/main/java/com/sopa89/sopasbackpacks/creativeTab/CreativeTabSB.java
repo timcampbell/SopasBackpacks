@@ -8,18 +8,12 @@ import com.sopa89.sopasbackpacks.reference.Reference;
 
 public class CreativeTabSB
 {
-	public static final CreativeTabs SB_TAB=new CreativeTabs(Reference.MOD_ID)
+	public static final CreativeTabs SB_TAB=new CreativeTabs(Reference.MOD_ID.toLowerCase())
 	{
 		@Override
 		public Item getTabIconItem()
 		{
 			return ModItems.backpack;
-		}
-		
-		@Override
-		public String getTranslatedTabLabel()
-		{
-			return "Sopa's Backpacks";
 		}
 	};
 }
