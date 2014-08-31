@@ -3,6 +3,7 @@ package com.sopa89.sopasbackpacks;
 import com.sopa89.sopasbackpacks.handler.ConfigurationHandler;
 import com.sopa89.sopasbackpacks.init.ModBlocks;
 import com.sopa89.sopasbackpacks.init.ModItems;
+import com.sopa89.sopasbackpacks.init.Recipes;
 import com.sopa89.sopasbackpacks.proxy.IProxy;
 import com.sopa89.sopasbackpacks.reference.Reference;
 import com.sopa89.sopasbackpacks.utility.LogHelper;
@@ -37,6 +38,8 @@ public class SopasBackpacks
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event)
 	{
+		Recipes.init();
+		
 		LogHelper.info("Initialization Comlete");
 	}
 	
