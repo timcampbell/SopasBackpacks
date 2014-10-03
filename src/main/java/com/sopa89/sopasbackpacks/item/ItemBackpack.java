@@ -6,5 +6,6 @@ public class ItemBackpack extends ItemsSB
 	{
 		super();
 		this.setUnlocalizedName("backpack");
+		this.setMaxStackSize(1);
 	}
 }
