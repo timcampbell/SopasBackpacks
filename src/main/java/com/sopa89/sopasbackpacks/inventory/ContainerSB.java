@@ -70,7 +70,7 @@ public abstract class ContainerSB extends Container
 				
 				if(slot.isItemValid(stack) && stackInSlot==null)
 				{
-					slot.putStack(ItemHelper.cloneItemStack(stack, Math.min(stack.getMaxStackSize(), slot.getSlotStackLimit())));
+					slot.putStack(ItemHelper.cloneItemStack(stack, Math.min(stack.stackSize, slot.getSlotStackLimit())));
 					slot.onSlotChanged();
 					
 					if(slot.getStack() != null)

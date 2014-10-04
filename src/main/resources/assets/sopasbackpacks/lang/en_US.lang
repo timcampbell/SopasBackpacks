@@ -5,3 +5,7 @@ item.sopasbackpacks:backpackBag.name=Backpack Bag
 item.sopasbackpacks:backpackStrap.name=Backpack Strap
 
 itemGroup.sopasbackpacks=Sopa's Backpacks
+
+tooltip.sopasbackpacks:none="No Owner"
+
+container.sopasbackpacks:backpack="Backpack"
