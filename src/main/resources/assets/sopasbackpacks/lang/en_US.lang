@@ -1,11 +1,12 @@
-item.sopasbackpacks:backpack.name=Plain Backpack
+item.sopasbackpacks:backpack.name=Backpack
 item.sopasbackpacks:yarnSpool.name=Spool of Yarn
 item.sopasbackpacks:stripLeather.name=Leather Strip
 item.sopasbackpacks:backpackBag.name=Backpack Bag
 item.sopasbackpacks:backpackStrap.name=Backpack Strap
+item.sopasbackpacks:messenger.name=Messenger Bag
 
 itemGroup.sopasbackpacks=Sopa's Backpacks
 
-tooltip.sopasbackpacks:none="No Owner"
+tooltip.sopasbackpacks:none=No Owner
 
-container.sopasbackpacks:backpack="Backpack"
+container.sopasbackpacks:backpack=Backpack

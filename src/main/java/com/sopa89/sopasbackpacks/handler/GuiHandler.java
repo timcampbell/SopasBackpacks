@@ -20,6 +20,10 @@ public class GuiHandler implements IGuiHandler
 		{
 			return new ContainerBackpack(player, new InventoryBackpack(player.getHeldItem()));
 		}
+		else if(id==GUIs.MESSENGER.ordinal())
+		{
+			return new ContainerMessengerBag(player, new InventoryMessengerBag(player.getHeldItem()));
+		}
 		else
 		{
 			return null;
@@ -32,6 +36,10 @@ public class GuiHandler implements IGuiHandler
 		if(id==GUIs.BACKPACK.ordinal())
 		{
 			return new GuiBackpack(player, new InventoryBackpack(player.getHeldItem()));
+		}
+		else if(id==GUIs.MESSENGER.ordinal())
+		{
+			return new GuiMessengerBag(player, new InventoryMessengerBag(player.getHeldItem()));
 		}
 		else
 		{
