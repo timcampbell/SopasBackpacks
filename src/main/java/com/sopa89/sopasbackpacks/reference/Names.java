@@ -20,11 +20,12 @@ public class Names
 	{
 		public static final String BACKPACK="container.sopasbackpacks:"+Items.BACKPACK;
 		public static final String VANILLA_INVENTORY="container.inventory";
-		public static final String MESSENGER_BAG="Messenger Bag";
+		public static final String MESSENGER_BAG="container.sopasbackpacks:"+Items.MESSENGER_BAG;
 	}
 	
 	public static final class Items
 	{
-		public static final String BACKPACK="Backpack";
+		public static final String BACKPACK="backpack";
+		public static final String MESSENGER_BAG="messenger";
 	}
 }

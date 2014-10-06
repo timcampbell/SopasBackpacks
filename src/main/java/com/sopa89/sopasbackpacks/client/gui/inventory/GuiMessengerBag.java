@@ -7,33 +7,33 @@ import net.minecraft.util.StatCollector;
 
 import org.lwjgl.opengl.GL11;
 
-import com.sopa89.sopasbackpacks.inventory.ContainerBackpack;
-import com.sopa89.sopasbackpacks.inventory.InventoryBackpack;
+import com.sopa89.sopasbackpacks.inventory.ContainerMessengerBag;
+import com.sopa89.sopasbackpacks.inventory.InventoryMessengerBag;
 import com.sopa89.sopasbackpacks.reference.Colors;
 import com.sopa89.sopasbackpacks.reference.Names;
 import com.sopa89.sopasbackpacks.reference.Textures;
 import com.sopa89.sopasbackpacks.utility.NBTHelper;
 
-public class GuiBackpack extends GuiContainer
+public class GuiMessengerBag extends GuiContainer
 {
 	private final ItemStack PARENT_STACK;
-	private final InventoryBackpack BACKPACK_INVENTORY;
+	private final InventoryMessengerBag MESSENGER_BAG_INVENTORY;
 	
-	public GuiBackpack(EntityPlayer player, InventoryBackpack backpackInv)
+	public GuiMessengerBag(EntityPlayer player, InventoryMessengerBag inventory)
 	{
-		super(new ContainerBackpack(player, backpackInv));
+		super(new ContainerMessengerBag(player, inventory));
 		
-		this.PARENT_STACK=backpackInv.parentStack;
-		this.BACKPACK_INVENTORY=backpackInv;
+		this.PARENT_STACK=player.getHeldItem();
+		this.MESSENGER_BAG_INVENTORY=inventory;
 		
-		xSize=176;
-		ySize=167;
+		xSize=175;
+		ySize=221;
 	}
-
+	
 	@Override
 	protected void drawGuiContainerForegroundLayer(int x, int y)
 	{
-		fontRendererObj.drawString(StatCollector.translateToLocal(BACKPACK_INVENTORY.getInventoryName()), 7, 6, Integer.parseInt(Colors.STANDARD_GRAY, 16));
+		fontRendererObj.drawString(StatCollector.translateToLocal(MESSENGER_BAG_INVENTORY.getInventoryName()), 7, 6, Integer.parseInt(Colors.STANDARD_GRAY, 16));
 		fontRendererObj.drawString(StatCollector.translateToLocal(Names.Container.VANILLA_INVENTORY), 7, ySize-97+5, Integer.parseInt(Colors.STANDARD_GRAY, 16));
 	}
 	
@@ -42,13 +42,13 @@ public class GuiBackpack extends GuiContainer
 	{
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		
-		this.mc.getTextureManager().bindTexture(Textures.Gui.BACKPACK);
+		this.mc.getTextureManager().bindTexture(Textures.Gui.MESSENGER_BAG);
 		
-		int xStart = (width - xSize) / 2;
-        int yStart = (height - ySize) / 2;
-        this.drawTexturedModalRect(xStart, yStart, 0, 0, xSize, ySize);
+		int xStart=(width-xSize)/2;
+		int yStart=(height-ySize)/2;
+		this.drawTexturedModalRect(xStart, yStart, 0, 0, xSize, ySize);
 	}
-	
+
 	@Override
 	public void onGuiClosed()
 	{
@@ -56,7 +56,7 @@ public class GuiBackpack extends GuiContainer
 		
 		if(mc.thePlayer!=null)
 		{
-			for(ItemStack stack: mc.thePlayer.inventory.mainInventory)
+			for(ItemStack stack:mc.thePlayer.inventory.mainInventory)
 			{
 				if(stack!=null)
 				{

@@ -10,3 +10,4 @@ itemGroup.sopasbackpacks=Sopa's Backpacks
 tooltip.sopasbackpacks:none=No Owner
 
 container.sopasbackpacks:backpack=Backpack
+container.sopasbackpacks:messenger=Messenger Bag

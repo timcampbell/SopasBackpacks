@@ -10,5 +10,6 @@ public class Textures
 	{
 		private static final String GUI_SHEET_LOCATION="textures/gui/";
 		public static final ResourceLocation BACKPACK=ResourceLocationHelper.getResourceLocation(GUI_SHEET_LOCATION+"backpackGui.png");
+		public static final ResourceLocation MESSENGER_BAG=ResourceLocationHelper.getResourceLocation(GUI_SHEET_LOCATION+"messengerGui.png");
 	}
 }

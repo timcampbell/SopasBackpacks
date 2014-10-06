@@ -33,6 +33,6 @@ public class SlotMessengerBag extends Slot
 	@Override
 	public boolean isItemValid(ItemStack stack)
 	{
-		return stack.getItem() instanceof ItemBackpack || stack.getItem() instanceof ItemMessengerBag;
+		return !(stack.getItem() instanceof ItemBackpack || stack.getItem() instanceof ItemMessengerBag);
 	}
 }

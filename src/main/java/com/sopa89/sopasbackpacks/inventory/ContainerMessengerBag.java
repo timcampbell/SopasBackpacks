@@ -31,7 +31,7 @@ public class ContainerMessengerBag extends ContainerSB
 		{
 			for(int messengerBagColumnIndex=0; messengerBagColumnIndex<messengerBagInvColumns; messengerBagColumnIndex++)
 			{
-				this.addSlotToContainer(new SlotBackpack(this, messengerBagInv, player, messengerBagColumnIndex+messengerBagRowIndex*messengerBagInvColumns, 8+messengerBagColumnIndex*18, 18+messengerBagRowIndex*18));
+				this.addSlotToContainer(new SlotMessengerBag(this, messengerBagInv, player, messengerBagColumnIndex+messengerBagRowIndex*messengerBagInvColumns, 8+messengerBagColumnIndex*18, 18+messengerBagRowIndex*18));
 			}
 		}
 		

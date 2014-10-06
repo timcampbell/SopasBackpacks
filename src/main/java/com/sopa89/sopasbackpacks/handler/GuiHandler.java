@@ -4,6 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 import com.sopa89.sopasbackpacks.client.gui.inventory.GuiBackpack;
+import com.sopa89.sopasbackpacks.client.gui.inventory.GuiMessengerBag;
 import com.sopa89.sopasbackpacks.inventory.ContainerBackpack;
 import com.sopa89.sopasbackpacks.inventory.ContainerMessengerBag;
 import com.sopa89.sopasbackpacks.inventory.InventoryBackpack;

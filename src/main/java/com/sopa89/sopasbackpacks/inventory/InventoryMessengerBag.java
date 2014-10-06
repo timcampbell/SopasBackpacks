@@ -197,10 +197,15 @@ public class InventoryMessengerBag implements IInventory, INBTTaggable
 			if(tagCompound.hasKey(Names.NBT.ITEMS))
 			{
 				NBTTagList tagList=tagCompound.getTagList(Names.NBT.ITEMS, 10);
-				byte slotIndex=tagCompound.getByte("Slot");
-				if(slotIndex>=0 && slotIndex<inventory.length)
+				inventory=new ItemStack[this.getSizeInventory()];
+				for(int i=0; i<tagList.tagCount(); i++)
 				{
-					inventory[slotIndex]=ItemStack.loadItemStackFromNBT(tagCompound);
+					NBTTagCompound nbtTagCompound=tagList.getCompoundTagAt(i);
+					byte slotIndex=nbtTagCompound.getByte("Slot");
+					if(slotIndex>=0 && slotIndex<inventory.length)
+					{
+						inventory[slotIndex]=ItemStack.loadItemStackFromNBT(nbtTagCompound);
+					}
 				}
 				
 			}
