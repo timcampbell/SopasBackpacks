@@ -5,6 +5,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 import com.sopa89.sopasbackpacks.item.ItemBackpack;
+import com.sopa89.sopasbackpacks.item.ItemMessengerBag;
 
 public class ContainerBackpack extends ContainerSB
 {
@@ -61,58 +62,7 @@ public class ContainerBackpack extends ContainerSB
 		
 		@Override
 		public ItemStack transferStackInSlot(EntityPlayer entityPlayer, int slotIndex)
-		{
-//			ItemStack newStack=null;
-//			Slot slot=(Slot) inventorySlots.get(slotIndex);
-//			
-//			if(slot!=null)
-//			{
-//				ItemStack stack=slot.getStack();
-//				newStack=stack.copy();
-//				
-//				//Attempt to shift click from backpack to player
-//				if(slotIndex<backpackInvRows*backpackInvColumns)
-//				{
-//					if(!this.mergeItemStack(stack, backpackInvRows*backpackInvColumns, inventorySlots.size(), false))
-//					{
-//						return null;
-//					}
-//				}
-//				
-//				//Special Case if a backpack is being shift clicked
-//				else if(stack.getItem() instanceof ItemBackpack)
-//				{
-//					//Attempt to move from inventory to hotbar
-//					if(slotIndex<(backpackInvRows*backpackInvColumns)+(PLAYER_INVENTORY_ROWS*PLAYER_INVENTORY_COLUMNS))
-//					{
-//						if(!this.mergeItemStack(stack, (backpackInvRows*backpackInvColumns)+(PLAYER_INVENTORY_ROWS*PLAYER_INVENTORY_COLUMNS), inventorySlots.size(), false))
-//						{
-//							return null;
-//						}
-//					}
-//					//Attempt to move from hotbar to player inventory
-//					else if(!this.mergeItemStack(stack, backpackInvRows*backpackInvColumns, (backpackInvRows*backpackInvColumns)+(PLAYER_INVENTORY_ROWS*PLAYER_INVENTORY_COLUMNS), false))
-//					{
-//						return null;
-//					}
-//				}
-//				//Attempt to shift click non-backpack items into backpack inventory
-//				else if(!this.mergeItemStack(stack, 0, backpackInvRows*backpackInvColumns, false))
-//				{
-//					return null;
-//				}
-//				
-//				if(stack.stackSize==0)
-//				{
-//					slot.putStack(null);
-//				}
-//				else
-//				{
-//					slot.onSlotChanged();
-//				}
-//			}
-//			return newStack;
-			
+		{			
 			ItemStack newItemStack = null;
 	        Slot slot = (Slot) inventorySlots.get(slotIndex);
 
@@ -129,10 +79,10 @@ public class ContainerBackpack extends ContainerSB
 	                    return null;
 	                }
 	            }
-	            // Special case if we are dealing with an Alchemical Bag being shift clicked
-	            else if (itemStack.getItem() instanceof ItemBackpack)
+	            // Special case if we are dealing with an backpack being shift clicked
+	            else if (itemStack.getItem() instanceof ItemBackpack || itemStack.getItem() instanceof ItemMessengerBag)
 	            {
-	                // Attempt to shift click a bag from the player inventory into the hot bar inventory
+	                // Attempt to shift click a backpack from the player inventory into the hot bar inventory
 	                if (slotIndex < (backpackInvRows * backpackInvColumns) + (PLAYER_INVENTORY_ROWS * PLAYER_INVENTORY_COLUMNS))
 	                {
 	                    if (!this.mergeItemStack(itemStack, (backpackInvRows * backpackInvColumns) + (PLAYER_INVENTORY_ROWS * PLAYER_INVENTORY_COLUMNS), inventorySlots.size(), false))
@@ -140,13 +90,13 @@ public class ContainerBackpack extends ContainerSB
 	                        return null;
 	                    }
 	                }
-	                // Attempt to shift click a bag from the hot bar inventory into the player inventory
+	                // Attempt to shift click a backpack from the hot bar inventory into the player inventory
 	                else if (!this.mergeItemStack(itemStack, backpackInvRows * backpackInvColumns, (backpackInvRows * backpackInvColumns) + (PLAYER_INVENTORY_ROWS * PLAYER_INVENTORY_COLUMNS), false))
 	                {
 	                    return null;
 	                }
 	            }
-	            // Attempt to shift click a non-Alchemical Bag into the bag inventory
+	            // Attempt to shift click a non-backpack into the bag inventory
 	            else if (!this.mergeItemStack(itemStack, 0, backpackInvRows * backpackInvColumns, false))
 	            {
 	                return null;

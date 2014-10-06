@@ -6,6 +6,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 import com.sopa89.sopasbackpacks.item.ItemBackpack;
+import com.sopa89.sopasbackpacks.item.ItemMessengerBag;
 
 public class SlotBackpack extends Slot
 {
@@ -27,11 +28,11 @@ public class SlotBackpack extends Slot
 	}
 	
 	//validate the item is valid for the slot
-	//always true for all but other backpacks
+	//true for all items except backpacks and messenger bags 
 	@Override
 	public boolean isItemValid(ItemStack itemStack)
 	{
-		return !(itemStack.getItem() instanceof ItemBackpack);
+		return !(itemStack.getItem() instanceof ItemBackpack || itemStack.getItem() instanceof ItemMessengerBag);
 	}
 	
 }
