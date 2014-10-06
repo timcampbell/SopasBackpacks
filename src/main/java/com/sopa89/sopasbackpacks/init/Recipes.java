@@ -16,6 +16,7 @@ public class Recipes
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.backpackBag), "lll", "lcl", "lll", 'l', new ItemStack(Items.leather), 'c', new ItemStack(Blocks.chest)));
 		
 		//Temp Backpack Recipe
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.backpack), "   ", "sbs", "   ", 's', new ItemStack(ModItems.backpackStrap), 'b', new ItemStack(ModItems.backpackBag)));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.backpack), "sbs", 's', new ItemStack(ModItems.backpackStrap), 'b', new ItemStack(ModItems.backpackBag)));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.messengerBag), "sss", "b b", 's', new ItemStack(ModItems.backpackStrap), 'b', new ItemStack(ModItems.backpackBag)));
 	}
 }
