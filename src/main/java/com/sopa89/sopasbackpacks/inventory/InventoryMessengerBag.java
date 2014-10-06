@@ -12,23 +12,22 @@ import com.sopa89.sopasbackpacks.reference.Names;
 import com.sopa89.sopasbackpacks.utility.INBTTaggable;
 import com.sopa89.sopasbackpacks.utility.NBTHelper;
 
-public class InventoryBackpack implements IInventory, INBTTaggable
+public class InventoryMessengerBag implements IInventory, INBTTaggable
 {
 	public ItemStack parentStack;
 	protected ItemStack[] inventory;
 	protected String customName;
 	
-	public InventoryBackpack(ItemStack stack)
+	public InventoryMessengerBag(ItemStack stack)
 	{
-		parentStack=stack;
+		this.parentStack=stack;
 		
-		int size=ContainerBackpack.BACKPACK_ROWS*ContainerBackpack.BACKPACK_COLUMNS;
-		
+		int size=ContainerMessengerBag.MESSENGER_BAG_ROWS*ContainerMessengerBag.MESSENGER_BAG_COLUMNS;
 		inventory=new ItemStack[size];
 		
 		readFromNBT(stack.getTagCompound());
 	}
-
+	
 	public void onGuiSaved(EntityPlayer player)
 	{
 		parentStack=findParentItemStack(player);
@@ -38,33 +37,35 @@ public class InventoryBackpack implements IInventory, INBTTaggable
 			save();
 		}
 	}
-
+	
 	public ItemStack findParentItemStack(EntityPlayer player)
 	{
 		if(NBTHelper.hasUUID(parentStack))
 		{
 			UUID parentStackUUID=new UUID(parentStack.getTagCompound().getLong(Names.NBT.UUID_MOST_SIG), parentStack.getTagCompound().getLong(Names.NBT.UUID_LEAST_SIG));
+			
 			for(int i=0; i<player.inventory.getSizeInventory(); i++)
 			{
 				ItemStack stack=player.inventory.getStackInSlot(i);
 				
 				if(NBTHelper.hasUUID(stack))
 				{
-					if(stack.getTagCompound().getLong(Names.NBT.UUID_MOST_SIG) == parentStackUUID.getMostSignificantBits())
+					if(stack.getTagCompound().getLong(Names.NBT.UUID_MOST_SIG)==parentStackUUID.getMostSignificantBits())
 					{
 						return stack;
 					}
 				}
 			}
 		}
+		
 		return null;
 	}
-	
+
 	public boolean matchesUUID(UUID uuid)
 	{
-		return NBTHelper.hasUUID(parentStack) && parentStack.getTagCompound().getLong(Names.NBT.UUID_MOST_SIG) == uuid.getMostSignificantBits() && parentStack.getTagCompound().getLong(Names.NBT.UUID_LEAST_SIG) == uuid.getLeastSignificantBits();
+		return NBTHelper.hasUUID(parentStack) && parentStack.getTagCompound().getLong(Names.NBT.UUID_MOST_SIG)==uuid.getMostSignificantBits() && parentStack.getTagCompound().getLong(Names.NBT.UUID_LEAST_SIG)==uuid.getLeastSignificantBits();
 	}
-	
+
 	public void save()
 	{
 		NBTTagCompound tagCompound=parentStack.getTagCompound();
@@ -93,7 +94,7 @@ public class InventoryBackpack implements IInventory, INBTTaggable
 	{
 		return inventory[slotIndex];
 	}
-	
+
 	@Override
 	public ItemStack decrStackSize(int slotIndex, int decrementAmount)
 	{
@@ -114,9 +115,11 @@ public class InventoryBackpack implements IInventory, INBTTaggable
 				}
 			}
 		}
+		
+		
 		return stack;
 	}
-	
+
 	@Override
 	public ItemStack getStackInSlotOnClosing(int slotIndex)
 	{
@@ -131,19 +134,19 @@ public class InventoryBackpack implements IInventory, INBTTaggable
 			return null;
 		}
 	}
-	
+
 	@Override
 	public void setInventorySlotContents(int slotIndex, ItemStack stack)
 	{
 		inventory[slotIndex]=stack;
 	}
-	
+
 	@Override
 	public String getInventoryName()
 	{
-		return this.hasCustomName() ? this.getCustomName() : Names.Container.BACKPACK;
+		return this.hasCustomName() ? this.getCustomName() : Names.Container.MESSENGER_BAG;
 	}
-	
+
 	@Override
 	public boolean hasCustomInventoryName()
 	{
@@ -155,19 +158,19 @@ public class InventoryBackpack implements IInventory, INBTTaggable
 	{
 		return 64;
 	}
-	
+
 	@Override
 	public void markDirty()
 	{
 		//NOOP
 	}
 	
-	@Override
+	@Override 
 	public boolean isUseableByPlayer(EntityPlayer player)
 	{
 		return true;
 	}
-	
+
 	@Override
 	public void openInventory()
 	{
@@ -179,13 +182,13 @@ public class InventoryBackpack implements IInventory, INBTTaggable
 	{
 		//NOOP
 	}
-
+	
 	@Override
 	public boolean isItemValidForSlot(int slotIndex, ItemStack stack)
 	{
 		return true;
 	}
-	
+
 	@Override
 	public void readFromNBT(NBTTagCompound tagCompound)
 	{
@@ -194,28 +197,24 @@ public class InventoryBackpack implements IInventory, INBTTaggable
 			if(tagCompound.hasKey(Names.NBT.ITEMS))
 			{
 				NBTTagList tagList=tagCompound.getTagList(Names.NBT.ITEMS, 10);
-				inventory=new ItemStack[this.getSizeInventory()];
-				for(int i=0; i<tagList.tagCount(); i++)
+				byte slotIndex=tagCompound.getByte("Slot");
+				if(slotIndex>=0 && slotIndex<inventory.length)
 				{
-					NBTTagCompound nbtTagCompound=tagList.getCompoundTagAt(i);
-					byte slotIndex=nbtTagCompound.getByte("Slot");
-					if(slotIndex>=0 && slotIndex<inventory.length)
-					{
-						inventory[slotIndex]=ItemStack.loadItemStackFromNBT(nbtTagCompound);
-					}
+					inventory[slotIndex]=ItemStack.loadItemStackFromNBT(tagCompound);
 				}
+				
 			}
 			
 			if(tagCompound.hasKey("display") && tagCompound.getTag("display").getClass().equals(NBTTagCompound.class))
 			{
-				if(tagCompound.getCompoundTag("display").hasKey("Name"))
+				if(tagCompound.getCompoundTag("diplay").hasKey("Name"))
 				{
 					customName=tagCompound.getCompoundTag("display").getString("Name");
 				}
 			}
 		}
 	}
-	
+
 	@Override
 	public void writeToNBT(NBTTagCompound tagCompound)
 	{
@@ -232,7 +231,7 @@ public class InventoryBackpack implements IInventory, INBTTaggable
 		}
 		tagCompound.setTag(Names.NBT.ITEMS, tagList);
 	}
-	
+
 	public boolean hasCustomName()
 	{
 		return customName!=null && customName.length()>0;
